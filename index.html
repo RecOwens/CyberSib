@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSib | Киберполигон СПТ</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
+    <!-- SEO -->
+    <meta name="description" content="CyberSib - учебный киберполигон Сибирского политехнического техникума для практики информационной безопасности">
+    <meta name="keywords" content="кибербезопасность, СПТ, обучение, лабораторные, CTF, Кемерово, Кузбасс">
+    <meta name="author" content="Белоногов Роман Дмитриевич">
+    <meta property="og:title" content="CyberSib | Киберполигон СПТ">
+    <meta property="og:description" content="Учебная платформа для практики информационной безопасности">
+    <meta property="og:type" content="website">
+</head>
+<body>
+    <!-- Анимация фона -->
+    <div class="bg-animation">
+        <div class="bg-grid"></div>
+        <div class="bg-particles" id="particles"></div>
+        <div class="bg-gradient"></div>
+    </div>
+    
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Логотип -->
+            <a href="#" class="logo" data-page="home">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="pulse-dot"></span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">CYBER<span class="logo-accent">SIB</span></span>
+                    <span class="logo-subtitle">СПТ | Киберполигон</span>
+                </div>
+            </a>
+            
+            <!-- Меню -->
+            <div class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link active" data-page="home">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="#" class="nav-link" data-page="labs">
+                    <i class="fas fa-flask"></i> Лаборатории
+                </a>
+                <a href="#" class="nav-link" data-page="ctf">
+                    <i class="fas fa-flag"></i> CTF
+                </a>
+                <a href="#" class="nav-link" data-page="docs">
+                    <i class="fas fa-book"></i> Документация
+                </a>
+                <a href="#" class="nav-link" data-page="contacts">
+                    <i class="fas fa-address-book"></i> Контакты
+                </a>
+            </div>
+            
+            <!-- Пользователь -->
+            <div class="user-section">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="user-name" id="userName">Гость</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="#" class="dropdown-item" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </a>
+                    <a href="#" class="dropdown-item" id="registerBtn">
+                        <i class="fas fa-user-plus"></i> Регистрация
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" id="profileBtn">
+                        <i class="fas fa-user-circle"></i> Профиль
+                    </a>
+                    <a href="#" class="dropdown-item" id="settingsBtn">
+                        <i class="fas fa-cog"></i> Настройки
+                    </a>
+                    <a href="#" class="dropdown-item logout" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Мобильное меню -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Контент -->
+    <div class="content-wrapper">
+        <!-- Главная -->
+        <section class="page active" id="homePage">
+            <div class="container">
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <div class="hero-badge beta-badge">
+                            <span class="badge-icon">🚧</span>
+                            <span class="badge-text">БЕТА-ТЕСТ | ЗАПУЩЕНО: ДЕКАБРЬ 2025</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            <span class="hero-line">КИБЕРПОЛИГОН</span>
+                            <span class="hero-line accent">СИБИРСКОГО ПОЛИТЕХА</span>
+                        </h1>
+                        
+                        <p class="hero-description">
+                            Практическая площадка для отработки навыков информационной безопасности. 
+                            Безопасная среда для студентов СПТ с реальными сценариями атак и защиты.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-number" id="totalLabs">15+</div>
+                                <div class="stat-label">лабораторных</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number" id="totalMachines">8</div>
+                                <div class="stat-label">виртуальных машин</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">доступ</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number" id="activeUsers">0</div>
+                                <div class="stat-label">студентов онлайн</div>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-lg" id="startLearningBtn">
+                                <i class="fas fa-play-circle"></i> Начать обучение
+                            </button>
+                            <button class="btn btn-outline btn-lg" id="openDocsBtn">
+                                <i class="fas fa-book-open"></i> Документация
+                            </button>
+                            <button class="btn btn-ghost btn-lg" id="quickDemoBtn">
+                                <i class="fas fa-bolt"></i> Быстрый демо-доступ
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-terminal">
+                        <div class="terminal">
+                            <div class="terminal-header">
+                                <div class="terminal-title">
+                                    <i class="fas fa-terminal"></i>
+                                    <span>root@cybersib-spt:~</span>
+                                </div>
+                                <div class="terminal-controls">
+                                    <span class="control-btn minimize"></span>
+                                    <span class="control-btn maximize"></span>
+                                    <span class="control-btn close"></span>
+                                </div>
+                            </div>
+                            <div class="terminal-body" id="terminalBody">
+                                <div class="terminal-output" id="terminalOutput">
+                                    <!-- Терминал заполняется через JS -->
+                                </div>
+                                <div class="terminal-input">
+                                    <span class="prompt">root@cybersib-spt:~$</span>
+                                    <input type="text" class="terminal-cmd" id="terminalCmd" placeholder="Введите команду...">
+                                    <span class="cursor">█</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Возможности -->
+            <div class="features-section">
+                <h2 class="section-title">
+                    <span class="section-title-line">Что дает</span>
+                    <span class="section-title-line accent">CyberSib?</span>
+                </h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Практика на реальных системах</h3>
+                        <p>Работайте с Kali Linux, Metasploit, Wireshark и другими профессиональными инструментами в безопасной среде</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Пошаговые лабораторные</h3>
+                        <p>Подробные инструкции и задания разной сложности — от основ Linux до продвинутых атак</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Подготовка к CTF</h3>
+                        <p>Тренируйтесь на задачах с реальных соревнований по кибербезопасности</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Безопасная среда</h3>
+                        <p>Все атаки выполняются в изолированной сети, никакого риска для реальных систем</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Лаборатории -->
+        <section class="page" id="labsPage">
+            <div class="container">
+                <h2 class="page-title">
+                    <i class="fas fa-flask"></i>
+                    <span>Лабораторные работы</span>
+                </h2>
+                
+                <div class="labs-controls">
+                    <div class="difficulty-filter">
+                        <button class="filter-btn active" data-filter="all">Все</button>
+                        <button class="filter-btn" data-filter="beginner">Начинающий</button>
+                        <button class="filter-btn" data-filter="intermediate">Средний</button>
+                        <button class="filter-btn" data-filter="advanced">Продвинутый</button>
+                        <button class="filter-btn" data-filter="ctf">CTF</button>
+                    </div>
+                    
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="labSearch" placeholder="Поиск лабораторной...">
+                    </div>
+                </div>
+                
+                <div class="labs-grid" id="labsContainer">
+                    <!-- Лаборатории загружаются через JS -->
+                </div>
+                
+                <div class="labs-stats">
+                    <div class="stat-card">
+                        <h3>Доступно лабораторий</h3>
+                        <div class="stat-number">15</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Среднее время выполнения</h3>
+                        <div class="stat-number">3.5 ч</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Лучший результат</h3>
+                        <div class="stat-number">95%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTF -->
+        <section class="page" id="ctfPage">
+            <div class="container">
+                <h2 class="page-title">
+                    <i class="fas fa-flag"></i>
+                    <span>CTF Challenge</span>
+                </h2>
+                
+                <div class="ctf-info">
+                    <div class="ctf-banner">
+                        <h3>Capture The Flag</h3>
+                        <p>Решайте задачи по взлому, криптографии, стеганографии и реверс-инжинирингу</p>
+                    </div>
+                    
+                    <div class="ctf-categories">
+                        <div class="category-card" data-category="web">
+                            <div class="category-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h4>Web Exploitation</h4>
+                            <p>SQLi, XSS, CSRF, LFI/RFI</p>
+                        </div>
+                        
+                        <div class="category-card" data-category="crypto">
+                            <div class="category-icon">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <h4>Cryptography</h4>
+                            <p>Шифры, RSA, хэши, стеганография</p>
+                        </div>
+                        
+                        <div class="category-card" data-category="forensics">
+                            <div class="category-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4>Digital Forensics</h4>
+                            <p>Анализ дисков, сетевого трафика, памяти</p>
+                        </div>
+                        
+                        <div class="category-card" data-category="pwn">
+                            <div class="category-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <h4>Binary Exploitation</h4>
+                            <p>Buffer overflow, ROP, shellcoding</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ctf-leaderboard">
+                        <h3><i class="fas fa-trophy"></i> Таблица лидеров</h3>
+                        <div class="table-container">
+                            <table class="leaderboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Место</th>
+                                        <th>Игрок</th>
+                                        <th>Очки</th>
+                                        <th>Решено</th>
+                                        <th>Рейтинг</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leaderboardBody">
+                                    <!-- Заполняется через JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Документация -->
+        <section class="page" id="docsPage">
+            <div class="container">
+                <h2 class="page-title">
+                    <i class="fas fa-book"></i>
+                    <span>Документация</span>
+                </h2>
+                
+                <div class="docs-container">
+                    <!-- Навигация по документации -->
+                    <div class="docs-sidebar">
+                        <div class="docs-nav">
+                            <h4>Основные документы</h4>
+                            <a href="#" class="docs-nav-link active" data-doc="about">
+                                <i class="fas fa-info-circle"></i> О проекте
+                            </a>
+                            <a href="#" class="docs-nav-link" data-doc="team">
+                                <i class="fas fa-users"></i> Наша команда
+                            </a>
+                            <a href="#" class="docs-nav-link" data-doc="rules">
+                                <i class="fas fa-book"></i> Правила использования
+                            </a>
+                            <a href="#" class="docs-nav-link" data-doc="privacy">
+                                <i class="fas fa-shield-alt"></i> Политика конфиденциальности
+                            </a>
+                            <a href="#" class="docs-nav-link" data-doc="license">
+                                <i class="fas fa-balance-scale"></i> Лицензия MIT
+                            </a>
+                            
+                            <h4>Инструкции</h4>
+                            <a href="#" class="docs-nav-link" data-doc="setup">
+                                <i class="fas fa-cogs"></i> Настройка среды
+                            </a>
+                            <a href="#" class="docs-nav-link" data-doc="access">
+                                <i class="fas fa-plug"></i> Подключение
+                            </a>
+                            <a href="#" class="docs-nav-link" data-doc="report">
+                                <i class="fas fa-file-alt"></i> Отчетность
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Контент документации -->
+                    <div class="docs-content">
+                        <div class="doc-viewer" id="docViewer">
+                            <!-- Документы загружаются через JS -->
+                        </div>
+                        
+                        <!-- Быстрые ссылки -->
+                        <div class="docs-quicklinks">
+                            <button class="quicklink" id="downloadRulesBtn">
+                                <i class="fas fa-download"></i> Скачать правила
+                            </button>
+                            <button class="quicklink" id="contactSupportBtn">
+                                <i class="fas fa-question-circle"></i> Техподдержка
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Контакты -->
+        <section class="page" id="contactsPage">
+            <div class="container">
+                <h2 class="page-title">
+                    <i class="fas fa-address-book"></i>
+                    <span>Контакты и поддержка</span>
+                </h2>
+                
+                <div class="contacts-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon telegram">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <h3>Telegram-канал</h3>
+                        <p>Новости, анонсы и обсуждения</p>
+                        <a href="https://t.me/spt42" target="_blank" class="contact-link">
+                            @spt42 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon support">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Техническая поддержка</h3>
+                        <p>Помощь с полигоном и лабораториями</p>
+                        <a href="https://t.me/plushkihapki" target="_blank" class="contact-link">
+                            @plushkihapki <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Электронная почта</h3>
+                        <p>Для официальных обращений</p>
+                        <a href="mailto:cyberrange@spt.edu" class="contact-link">
+                            cyberrange@spt.edu
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon github">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>Исходный код</h3>
+                        <p>Проект на GitHub</p>
+                        <a href="https://github.com" target="_blank" class="contact-link">
+                            CyberSib-SPT <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Улучшенная форма обратной связи -->
+                <div class="feedback-form">
+                    <h3><i class="fas fa-comment-alt"></i> Форма обратной связи</h3>
+                    <form id="feedbackForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="feedbackName">Ваше имя</label>
+                                <input type="text" id="feedbackName" class="form-control" placeholder="Иван Иванов" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="feedbackEmail">Email</label>
+                                <input type="email" id="feedbackEmail" class="form-control" placeholder="student@spt.edu" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedbackType">Тип обращения</label>
+                            <div class="select-wrapper">
+                                <select id="feedbackType" class="form-control select" required>
+                                    <option value="">Выберите тип обращения</option>
+                                    <option value="bug">Сообщение об ошибке</option>
+                                    <option value="suggestion">Предложение по улучшению</option>
+                                    <option value="question">Вопрос по лаборатории</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedbackMessage">Сообщение</label>
+                            <textarea id="feedbackMessage" class="form-control" rows="5" placeholder="Опишите вашу проблему или предложение подробно..." required></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Отправить сообщение
+                            </button>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Обычно отвечаем в течение 24 часов. Для срочных вопросов используйте Telegram.</span>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Адрес техникума -->
+                <div class="alert alert-info" style="margin-top: var(--space-2xl);">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Адрес техникума:</strong><br>
+                        Кемеровская область - Кузбасс<br>
+                        г. Кемерово, ул. Павленко, 1А; 650002
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Модальные окна -->
+    
+    <!-- Вход -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-sign-in-alt"></i> Вход в систему</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Вход</button>
+                    <button class="auth-tab" data-tab="register">Регистрация</button>
+                </div>
+                
+                <form id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <label for="loginUsername">Логин</label>
+                        <input type="text" id="loginUsername" class="form-control" placeholder="Введите логин" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Пароль</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Введите пароль" required>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Запомнить меня</span>
+                        </label>
+                        <button type="button" class="link" id="forgotPasswordBtn">Забыли пароль?</button>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                    
+                    <div class="demo-credentials">
+                        <p><i class="fas fa-info-circle"></i> Демо-доступ:</p>
+                        <p><strong>Логин:</strong> demo | <strong>Пароль:</strong> demo2024</p>
+                    </div>
+                </form>
+                
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="regUsername">Логин</label>
+                        <input type="text" id="regUsername" class="form-control" placeholder="Придумайте логин" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" class="form-control" placeholder="student@spt.edu" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regPassword">Пароль</label>
+                        <input type="password" id="regPassword" class="form-control" placeholder="Не менее 8 символов" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regGroup">Группа</label>
+                        <div class="select-wrapper">
+                            <select id="regGroup" class="form-control select" required>
+                                <option value="">Выберите группу</option>
+                                <option value="ИБ-21">ИБ-21</option>
+                                <option value="ИБ-22">ИБ-22</option>
+                                <option value="ИБ-23">ИБ-23</option>
+                                <option value="КС-21">КС-21</option>
+                                <option value="КС-22">КС-22</option>
+                                <option value="other">Другая</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" id="acceptRules" required>
+                            <span>Согласен с <button type="button" class="rules-link" id="viewRulesBtn">правилами использования</button></span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success btn-block">
+                        <i class="fas fa-user-plus"></i> Зарегистрироваться
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Профиль -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content wide">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-circle"></i> Личный кабинет</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-secret"></i>
+                        <span class="status-indicator online"></span>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="profileUserName">Гость</h3>
+                        <p><i class="fas fa-id-badge"></i> <span id="profileUserRole">Студент</span></p>
+                        <p><i class="fas fa-users"></i> Группа: <span id="profileUserGroup">-</span></p>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-number" id="profilePoints">0</div>
+                            <div class="stat-label">Очки</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" id="profileLabs">0</div>
+                            <div class="stat-label">Лабораторные</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" id="profileRank">-</div>
+                            <div class="stat-label">Рейтинг</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-tabs">
+                    <button class="profile-tab active" data-tab="progress">
+                        <i class="fas fa-chart-line"></i> Прогресс
+                    </button>
+                    <button class="profile-tab" data-tab="achievements">
+                        <i class="fas fa-trophy"></i> Достижения
+                    </button>
+                    <button class="profile-tab" data-tab="settings">
+                        <i class="fas fa-cog"></i> Настройки
+                    </button>
+                    <button class="profile-tab" data-tab="certificates">
+                        <i class="fas fa-award"></i> Сертификаты
+                    </button>
+                </div>
+                
+                <div class="profile-content">
+                    <div class="profile-pane active" id="progressPane">
+                        <div class="progress-list">
+                            <h4>Ваш прогресс по лабораторным работам</h4>
+                            <p>Здесь будет отображаться ваша статистика выполнения лабораторных работ.</p>
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Начните выполнять лабораторные работы, чтобы увидеть свой прогресс.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-pane" id="achievementsPane">
+                        <div class="achievements-list">
+                            <h4>Ваши достижения</h4>
+                            <p>Здесь будут отображаться ваши достижения.</p>
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Выполняйте лабораторные работы, чтобы получать достижения.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-pane" id="settingsPane">
+                        <div class="settings-form">
+                            <h4>Настройки профиля</h4>
+                            <p>Настройки профиля временно недоступны.</p>
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Функция настроек профиля находится в разработке.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-pane" id="certificatesPane">
+                        <div class="certificates-list">
+                            <h4>Ваши сертификаты</h4>
+                            <p>Здесь будут отображаться ваши сертификаты.</p>
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Сертификаты выдаются после успешного выполнения лабораторных работ.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Запуск лаборатории -->
+    <div class="modal" id="labModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="labModalTitle"><i class="fas fa-play"></i> Запуск лаборатории</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Контент загружается через JS -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h3>CyberSib</h3>
+                        <p>Киберполигон СПТ</p>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Учебная платформа для практики информационной безопасности.<br>
+                    Сибирский политехнический техникум, Кемерово.
+                </p>
+                <p class="footer-description">
+                    <strong>Адрес:</strong> Кемеровская область - Кузбасс г. Кемерово, ул. Павленко, 1А; 650002
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Навигация</h4>
+                    <button class="footer-link" data-page="home">Главная</button>
+                    <button class="footer-link" data-page="labs">Лаборатории</button>
+                    <button class="footer-link" data-page="ctf">CTF</button>
+                    <button class="footer-link" data-page="docs">Документация</button>
+                    <button class="footer-link" data-page="contacts">Контакты</button>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Ресурсы</h4>
+                    <button class="footer-link" id="toolsBtn">Инструменты</button>
+                    <button class="footer-link" data-page="docs">Инструкции</button>
+                    <button class="footer-link" data-doc="team">Наша команда</button>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Правовая информация</h4>
+                    <button class="footer-link" data-doc="license">Лицензия MIT</button>
+                    <button class="footer-link" data-doc="rules">Правила использования</button>
+                    <button class="footer-link" data-doc="privacy">Конфиденциальность</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-info">
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> Сибирский политехнический техникум, Кемерово, Кузбасс
+                </p>
+                <p>
+                    <i class="fas fa-calendar-alt"></i> Студенческий проект | Запущен: декабрь 2025
+                </p>
+                <p>
+                    <i class="fas fa-graduation-cap"></i> Создано студентами для студентов
+                </p>
+            </div>
+            
+            <div class="footer-social">
+                <a href="https://t.me/spt42" target="_blank" class="social-link">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://github.com/CyberSib-SPT" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:cyberrange@spt.edu" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <p class="copyright">
+                © 2025 CyberSib | Студенческий проект СПТ
+                <span class="version">v2.0</span>
+            </p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
