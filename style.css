@@ -680,7 +680,6 @@ pre {
     height: 400px;
     display: flex;
     flex-direction: column;
-    cursor: default !important; /* Добавляем это */
 }
 
 .terminal-body {
@@ -689,9 +688,9 @@ pre {
     display: flex;
     flex-direction: column;
     background: #1e1e1e;
-    cursor: default !important; /* Добавляем это */
 }
 
+/* ИСПРАВЛЕНИЕ ПРОКРУТКИ ТЕРМИНАЛА */
 .terminal-output {
     flex: 1;
     font-family: var(--font-code);
@@ -703,8 +702,20 @@ pre {
     overflow-x: hidden;
     height: calc(100% - 40px);
     scroll-behavior: smooth;
-    cursor: text !important; /* Только здесь курсор text */
-    user-select: text !important; /* Разрешаем выделение текста */
+    cursor: text;
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+/* Разрешаем прокрутку колесиком */
+.terminal-output {
+    overscroll-behavior: contain;
+}
+
+.terminal-output:focus {
+    outline: none;
 }
 
 /* Улучшаем скроллбар для терминала */
@@ -725,19 +736,6 @@ pre {
 
 .terminal-output::-webkit-scrollbar-thumb:hover {
     background: #555;
-}
-
-/* Отключаем выделение на остальных элементах */
-.terminal-header,
-.terminal-title,
-.terminal-controls,
-.control-btn,
-.terminal-input,
-.prompt,
-.cursor {
-    user-select: none !important;
-    -webkit-user-select: none !important;
-    cursor: default !important;
 }
 
 @keyframes terminalFloat {
@@ -783,47 +781,6 @@ pre {
 .control-btn.minimize { background: #ffbd2e; }
 .control-btn.maximize { background: #27ca3f; }
 .control-btn.close { background: #ff5f56; }
-
-.terminal-body {
-    padding: 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: #1e1e1e;
-    cursor: text;
-}
-
-.terminal-output {
-    flex: 1;
-    font-family: var(--font-code);
-    font-size: 0.9rem;
-    color: #f0f0f0;
-    line-height: 1.4;
-    padding: 16px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: calc(100% - 40px);
-    scroll-behavior: smooth;
-    cursor: text;
-}
-
-.terminal-output::-webkit-scrollbar {
-    width: 10px;
-}
-
-.terminal-output::-webkit-scrollbar-track {
-    background: #2a2a2a;
-    border-radius: 4px;
-}
-
-.terminal-output::-webkit-scrollbar-thumb {
-    background: #555;
-    border-radius: 4px;
-}
-
-.terminal-output::-webkit-scrollbar-thumb:hover {
-    background: #666;
-}
 
 .terminal-line {
     margin-bottom: 4px;
@@ -1209,6 +1166,54 @@ pre {
     gap: var(--space-2xl);
 }
 
+.ctf-tabs {
+    display: flex;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xl);
+    background: var(--darker);
+    padding: var(--space-xs);
+    border-radius: var(--radius-full);
+}
+
+.ctf-tab {
+    flex: 1;
+    padding: var(--space-md) var(--space-lg);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-text);
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.ctf-tab:hover {
+    color: var(--light);
+    background: rgba(var(--light-rgb), 0.05);
+}
+
+.ctf-tab.active {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.ctf-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+}
+
+.ctf-pane {
+    display: none;
+}
+
+.ctf-pane.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
 .ctf-banner {
     background: var(--gradient-dark);
     border: 1px solid var(--gray);
@@ -1246,6 +1251,7 @@ pre {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--space-xl);
+    margin-top: var(--space-xl);
 }
 
 .category-card {
@@ -1295,6 +1301,80 @@ pre {
     font-size: 0.95rem;
 }
 
+/* Турниры CTF */
+.tournaments-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+}
+
+.coming-soon {
+    background: var(--gradient-dark);
+    border: 1px solid var(--gray);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.coming-soon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-accent);
+}
+
+.coming-soon-icon {
+    width: 100px;
+    height: 100px;
+    background: rgba(var(--accent-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-lg);
+    font-size: 3rem;
+    color: var(--accent);
+    animation: pulse 2s infinite;
+}
+
+.coming-soon h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+    color: var(--light);
+}
+
+.coming-soon p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+}
+
+.tournament-features {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl);
+    margin: var(--space-xl) 0;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+.btn-notify {
+    margin-top: var(--space-xl);
+    padding: var(--space-md) var(--space-2xl);
+    font-size: 1.1rem;
+}
+
 .ctf-leaderboard {
     background: var(--dark-lighter);
     border: 1px solid var(--gray);
@@ -1313,6 +1393,7 @@ pre {
 
 .table-container {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .leaderboard-table {
@@ -1786,6 +1867,33 @@ textarea.form-control {
     line-height: 1.6;
 }
 
+/* Сила пароля */
+.password-strength {
+    position: relative;
+}
+
+.strength-meter {
+    height: 4px;
+    background: var(--gray);
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-xs);
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width var(--transition-normal), background var(--transition-normal);
+}
+
+.strength-text {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: var(--space-xs);
+}
+
 .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -1948,6 +2056,12 @@ textarea.form-control {
 .rules-link {
     color: var(--primary);
     text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
 }
 
 .rules-link:hover {
@@ -2073,6 +2187,56 @@ textarea.form-control {
 .profile-pane.active {
     display: block;
     animation: fadeIn 0.3s ease;
+}
+
+/* Достижения */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-lg);
+}
+
+.achievement-card {
+    background: var(--dark);
+    border: 1px solid var(--gray);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: all var(--transition-normal);
+}
+
+.achievement-card:hover {
+    border-color: var(--secondary);
+    transform: translateY(-5px);
+}
+
+.achievement-card.locked {
+    opacity: 0.6;
+    filter: grayscale(0.5);
+}
+
+.achievement-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(var(--secondary-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+    font-size: 1.5rem;
+    color: var(--secondary);
+}
+
+.achievement-card h5 {
+    margin-bottom: var(--space-xs);
+    color: var(--light);
+}
+
+.achievement-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
 }
 
 /* ===== ФУТЕР ===== */
@@ -2283,7 +2447,7 @@ textarea.form-control {
     }
     
     .hero-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .hero-buttons {
@@ -2317,6 +2481,40 @@ textarea.form-control {
         padding: var(--space-xl) 20px;
         grid-template-columns: 1fr;
     }
+    
+    /* Улучшение для мобильных устройств */
+    .terminal {
+        height: 300px;
+    }
+    
+    .ctf-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .tournament-features {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Улучшение кнопок для касания */
+    .btn, .filter-btn, .nav-link, .dropdown-item,
+    .auth-tab, .profile-tab, .ctf-tab {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Улучшение форм для мобильных */
+    .form-control {
+        font-size: 16px; /* Предотвращает масштабирование в iOS */
+    }
+    
+    input, select, textarea {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2330,6 +2528,46 @@ textarea.form-control {
     
     .labs-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contacts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-info {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+}
+
+/* Планшеты */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .labs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .ctf-categories {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -2549,7 +2787,8 @@ textarea.form-control {
 .filter-btn.active,
 .auth-tab.active,
 .profile-tab.active,
-.docs-nav-link.active {
+.docs-nav-link.active,
+.ctf-tab.active {
     cursor: pointer;
     position: relative;
     z-index: 1;
@@ -2672,4 +2911,27 @@ textarea.form-control {
 /* Улучшение кнопок фильтров */
 .filter-btn {
     cursor: pointer;
+}
+
+/* Анимация для новых элементов */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slideUp 0.6s ease;
+}
+
+/* Плавные переходы для всех интерактивных элементов */
+a, button, .btn, .nav-link, .dropdown-item, 
+.footer-link, .quicklink, .category-card,
+.feature-card, .lab-card, .contact-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

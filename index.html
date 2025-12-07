@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberSib | Киберполигон СПТ</title>
     
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -86,6 +95,9 @@
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item" id="profileBtn">
                         <i class="fas fa-user-circle"></i> Профиль
+                    </a>
+                    <a href="#" class="dropdown-item" id="dashboardBtn">
+                        <i class="fas fa-tachometer-alt"></i> Личный кабинет
                     </a>
                     <a href="#" class="dropdown-item" id="settingsBtn">
                         <i class="fas fa-cog"></i> Настройки
@@ -280,63 +292,123 @@
                     <span>CTF Challenge</span>
                 </h2>
                 
-                <div class="ctf-info">
-                    <div class="ctf-banner">
-                        <h3>Capture The Flag</h3>
-                        <p>Решайте задачи по взлому, криптографии, стеганографии и реверс-инжинирингу</p>
+                <div class="ctf-tabs">
+                    <button class="ctf-tab active" data-tab="challenges">Задачи</button>
+                    <button class="ctf-tab" data-tab="tournaments">Турниры</button>
+                    <button class="ctf-tab" data-tab="leaderboard">Таблица лидеров</button>
+                </div>
+                
+                <div class="ctf-content">
+                    <!-- Задачи CTF -->
+                    <div class="ctf-pane active" id="challengesPane">
+                        <div class="ctf-info">
+                            <div class="ctf-banner">
+                                <h3>Capture The Flag</h3>
+                                <p>Решайте задачи по взлому, криптографии, стеганографии и реверс-инжинирингу</p>
+                            </div>
+                            
+                            <div class="ctf-categories">
+                                <div class="category-card" data-category="web">
+                                    <div class="category-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <h4>Web Exploitation</h4>
+                                    <p>SQLi, XSS, CSRF, LFI/RFI</p>
+                                </div>
+                                
+                                <div class="category-card" data-category="crypto">
+                                    <div class="category-icon">
+                                        <i class="fas fa-key"></i>
+                                    </div>
+                                    <h4>Cryptography</h4>
+                                    <p>Шифры, RSA, хэши, стеганография</p>
+                                </div>
+                                
+                                <div class="category-card" data-category="forensics">
+                                    <div class="category-icon">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <h4>Digital Forensics</h4>
+                                    <p>Анализ дисков, сетевого трафика, памяти</p>
+                                </div>
+                                
+                                <div class="category-card" data-category="pwn">
+                                    <div class="category-icon">
+                                        <i class="fas fa-bug"></i>
+                                    </div>
+                                    <h4>Binary Exploitation</h4>
+                                    <p>Buffer overflow, ROP, shellcoding</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="ctf-categories">
-                        <div class="category-card" data-category="web">
-                            <div class="category-icon">
-                                <i class="fas fa-globe"></i>
+                    <!-- Турниры CTF -->
+                    <div class="ctf-pane" id="tournamentsPane">
+                        <div class="tournaments-section">
+                            <div class="alert alert-info">
+                                <i class="fas fa-tools"></i>
+                                <div>
+                                    <h4>Раздел в разработке</h4>
+                                    <p>Мы активно работаем над системой турниров CTF. В скором времени здесь появятся:</p>
+                                    <ul>
+                                        <li>Регулярные турниры с призами</li>
+                                        <li>Командные соревнования</li>
+                                        <li>Рейтинговая система ELO</li>
+                                        <li>Спонсорские мероприятия</li>
+                                        <li>Онлайн и оффлайн чемпионаты</li>
+                                    </ul>
+                                    <p>Следите за обновлениями в нашем Telegram-канале!</p>
+                                </div>
                             </div>
-                            <h4>Web Exploitation</h4>
-                            <p>SQLi, XSS, CSRF, LFI/RFI</p>
-                        </div>
-                        
-                        <div class="category-card" data-category="crypto">
-                            <div class="category-icon">
-                                <i class="fas fa-key"></i>
+                            
+                            <div class="coming-soon">
+                                <div class="coming-soon-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <h3>CyberSib CTF League 2025</h3>
+                                <p>Первый студенческий чемпионат по кибербезопасности в Кузбассе</p>
+                                <div class="tournament-features">
+                                    <div class="feature">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>Старт: Март 2025</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-users"></i>
+                                        <span>Командный формат</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-gift"></i>
+                                        <span>Призовой фонд</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-notify" id="notifyTournamentBtn">
+                                    <i class="fas fa-bell"></i> Уведомить о старте
+                                </button>
                             </div>
-                            <h4>Cryptography</h4>
-                            <p>Шифры, RSA, хэши, стеганография</p>
-                        </div>
-                        
-                        <div class="category-card" data-category="forensics">
-                            <div class="category-icon">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <h4>Digital Forensics</h4>
-                            <p>Анализ дисков, сетевого трафика, памяти</p>
-                        </div>
-                        
-                        <div class="category-card" data-category="pwn">
-                            <div class="category-icon">
-                                <i class="fas fa-bug"></i>
-                            </div>
-                            <h4>Binary Exploitation</h4>
-                            <p>Buffer overflow, ROP, shellcoding</p>
                         </div>
                     </div>
                     
-                    <div class="ctf-leaderboard">
-                        <h3><i class="fas fa-trophy"></i> Таблица лидеров</h3>
-                        <div class="table-container">
-                            <table class="leaderboard-table">
-                                <thead>
-                                    <tr>
-                                        <th>Место</th>
-                                        <th>Игрок</th>
-                                        <th>Очки</th>
-                                        <th>Решено</th>
-                                        <th>Рейтинг</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="leaderboardBody">
-                                    <!-- Заполняется через JS -->
-                                </tbody>
-                            </table>
+                    <!-- Таблица лидеров -->
+                    <div class="ctf-pane" id="leaderboardPane">
+                        <div class="ctf-leaderboard">
+                            <h3><i class="fas fa-trophy"></i> Таблица лидеров</h3>
+                            <div class="table-container">
+                                <table class="leaderboard-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Место</th>
+                                            <th>Игрок</th>
+                                            <th>Очки</th>
+                                            <th>Решено</th>
+                                            <th>Рейтинг</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="leaderboardBody">
+                                        <!-- Заполняется через JS -->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -368,8 +440,11 @@
                             <a href="#" class="docs-nav-link" data-doc="privacy">
                                 <i class="fas fa-shield-alt"></i> Политика конфиденциальности
                             </a>
-                            <a href="#" class="docs-nav-link" data-doc="license">
-                                <i class="fas fa-balance-scale"></i> Лицензия MIT
+                            <a href="#" class="docs-nav-link" data-doc="security">
+                                <i class="fas fa-lock"></i> Безопасность данных
+                            </a>
+                            <a href="#" class="docs-nav-link" data-doc="licenses">
+                                <i class="fas fa-balance-scale"></i> Лицензии
                             </a>
                             
                             <h4>Инструкции</h4>
@@ -442,8 +517,8 @@
                         </div>
                         <h3>Электронная почта</h3>
                         <p>Для официальных обращений</p>
-                        <a href="mailto:cyberrange@spt.edu" class="contact-link">
-                            cyberrange@spt.edu
+                        <a href="mailto:cybersib@spt.edu" class="contact-link">
+                            cybersib@spt.edu
                         </a>
                     </div>
                     
@@ -453,7 +528,7 @@
                         </div>
                         <h3>Исходный код</h3>
                         <p>Проект на GitHub</p>
-                        <a href="https://github.com" target="_blank" class="contact-link">
+                        <a href="https://github.com/CyberSib-SPT" target="_blank" class="contact-link">
                             CyberSib-SPT <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
@@ -462,6 +537,7 @@
                 <!-- Улучшенная форма обратной связи -->
                 <div class="feedback-form">
                     <h3><i class="fas fa-comment-alt"></i> Форма обратной связи</h3>
+                    <input type="hidden" id="csrfToken" value="">
                     <form id="feedbackForm">
                         <div class="form-grid">
                             <div class="form-group">
@@ -528,6 +604,7 @@
                 <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="csrfTokenModal" value="">
                 <div class="auth-tabs">
                     <button class="auth-tab active" data-tab="login">Вход</button>
                     <button class="auth-tab" data-tab="register">Регистрация</button>
@@ -535,8 +612,8 @@
                 
                 <form id="loginForm" class="auth-form active">
                     <div class="form-group">
-                        <label for="loginUsername">Логин</label>
-                        <input type="text" id="loginUsername" class="form-control" placeholder="Введите логин" required>
+                        <label for="loginUsername">Логин или Email</label>
+                        <input type="text" id="loginUsername" class="form-control" placeholder="Введите логин или email" required>
                     </div>
                     
                     <div class="form-group">
@@ -575,7 +652,18 @@
                     
                     <div class="form-group">
                         <label for="regPassword">Пароль</label>
-                        <input type="password" id="regPassword" class="form-control" placeholder="Не менее 8 символов" required>
+                        <div class="password-strength">
+                            <input type="password" id="regPassword" class="form-control" placeholder="Не менее 8 символов" required>
+                            <div class="strength-meter">
+                                <div class="strength-bar"></div>
+                            </div>
+                            <span class="strength-text">Надежность: низкая</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regConfirmPassword">Подтвердите пароль</label>
+                        <input type="password" id="regConfirmPassword" class="form-control" placeholder="Повторите пароль" required>
                     </div>
                     
                     <div class="form-group">
@@ -597,6 +685,13 @@
                         <label class="checkbox">
                             <input type="checkbox" id="acceptRules" required>
                             <span>Согласен с <button type="button" class="rules-link" id="viewRulesBtn">правилами использования</button></span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" id="acceptPrivacy" required>
+                            <span>Согласен с <button type="button" class="rules-link" id="viewPrivacyBtn">политикой конфиденциальности</button></span>
                         </label>
                     </div>
                     
@@ -649,8 +744,8 @@
                     <button class="profile-tab" data-tab="achievements">
                         <i class="fas fa-trophy"></i> Достижения
                     </button>
-                    <button class="profile-tab" data-tab="settings">
-                        <i class="fas fa-cog"></i> Настройки
+                    <button class="profile-tab" data-tab="security">
+                        <i class="fas fa-shield-alt"></i> Безопасность
                     </button>
                     <button class="profile-tab" data-tab="certificates">
                         <i class="fas fa-award"></i> Сертификаты
@@ -661,7 +756,7 @@
                     <div class="profile-pane active" id="progressPane">
                         <div class="progress-list">
                             <h4>Ваш прогресс по лабораторным работам</h4>
-                            <p>Здесь будет отображаться ваша статистика выполнения лабораторных работ.</p>
+                            <div id="progressChart"></div>
                             <div class="alert alert-info">
                                 <i class="fas fa-info-circle"></i>
                                 <span>Начните выполнять лабораторные работы, чтобы увидеть свой прогресс.</span>
@@ -672,21 +767,39 @@
                     <div class="profile-pane" id="achievementsPane">
                         <div class="achievements-list">
                             <h4>Ваши достижения</h4>
-                            <p>Здесь будут отображаться ваши достижения.</p>
-                            <div class="alert alert-info">
-                                <i class="fas fa-info-circle"></i>
-                                <span>Выполняйте лабораторные работы, чтобы получать достижения.</span>
+                            <div class="achievements-grid" id="achievementsGrid">
+                                <!-- Достижения загружаются через JS -->
                             </div>
                         </div>
                     </div>
                     
-                    <div class="profile-pane" id="settingsPane">
-                        <div class="settings-form">
-                            <h4>Настройки профиля</h4>
-                            <p>Настройки профиля временно недоступны.</p>
-                            <div class="alert alert-warning">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <span>Функция настроек профиля находится в разработке.</span>
+                    <div class="profile-pane" id="securityPane">
+                        <div class="security-settings">
+                            <h4>Настройки безопасности</h4>
+                            <div class="security-item">
+                                <h5><i class="fas fa-key"></i> Смена пароля</h5>
+                                <form id="changePasswordForm">
+                                    <div class="form-group">
+                                        <label for="currentPassword">Текущий пароль</label>
+                                        <input type="password" id="currentPassword" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newPassword">Новый пароль</label>
+                                        <input type="password" id="newPassword" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmNewPassword">Подтвердите новый пароль</label>
+                                        <input type="password" id="confirmNewPassword" class="form-control" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Сменить пароль</button>
+                                </form>
+                            </div>
+                            
+                            <div class="security-item">
+                                <h5><i class="fas fa-history"></i> История активности</h5>
+                                <div class="activity-log" id="activityLog">
+                                    <p>Здесь будет отображаться история ваших входов в систему.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -694,10 +807,11 @@
                     <div class="profile-pane" id="certificatesPane">
                         <div class="certificates-list">
                             <h4>Ваши сертификаты</h4>
-                            <p>Здесь будут отображаться ваши сертификаты.</p>
-                            <div class="alert alert-info">
-                                <i class="fas fa-info-circle"></i>
-                                <span>Сертификаты выдаются после успешного выполнения лабораторных работ.</span>
+                            <div class="certificates-grid" id="certificatesGrid">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Сертификаты выдаются после успешного выполнения лабораторных работ.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -754,11 +868,12 @@
                     <button class="footer-link" id="toolsBtn">Инструменты</button>
                     <button class="footer-link" data-page="docs">Инструкции</button>
                     <button class="footer-link" data-doc="team">Наша команда</button>
+                    <button class="footer-link" data-doc="security">Безопасность</button>
                 </div>
                 
                 <div class="footer-column">
                     <h4>Правовая информация</h4>
-                    <button class="footer-link" data-doc="license">Лицензия MIT</button>
+                    <button class="footer-link" data-doc="licenses">Лицензии</button>
                     <button class="footer-link" data-doc="rules">Правила использования</button>
                     <button class="footer-link" data-doc="privacy">Конфиденциальность</button>
                 </div>
@@ -785,14 +900,14 @@
                 <a href="https://github.com/CyberSib-SPT" target="_blank" class="social-link">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="mailto:cyberrange@spt.edu" class="social-link">
+                <a href="mailto:cybersib@spt.edu" class="social-link">
                     <i class="fas fa-envelope"></i>
                 </a>
             </div>
             
             <p class="copyright">
                 © 2025 CyberSib | Студенческий проект СПТ
-                <span class="version">v2.0</span>
+                <span class="version">v2.1.0</span>
             </p>
         </div>
     </footer>

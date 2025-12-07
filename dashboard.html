@@ -1,0 +1,191 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - CyberSib</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-grid"></div>
+        <div class="bg-particles" id="particles"></div>
+        <div class="bg-gradient"></div>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index') }}" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="pulse-dot"></div>
+                </div>
+                <div class="logo-text">
+                    <div class="logo-title">Cyber<span class="logo-accent">Sib</span></div>
+                    <div class="logo-subtitle">Professional</div>
+                </div>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="{{ url_for('index') }}" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Главная</span>
+                </a>
+                <a href="{{ url_for('dashboard') }}" class="nav-link active">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Личный кабинет</span>
+                </a>
+            </div>
+            
+            <div class="user-section">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="user-name">{{ user.username }}</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="dashboard-container">
+            <!-- Боковая панель -->
+            <aside class="dashboard-sidebar">
+                <div class="sidebar-header">
+                    <div class="user-profile">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                            <div class="status-indicator online"></div>
+                        </div>
+                        <h3>{{ user.username }}</h3>
+                        <p class="user-role">{{ user.group_name }}</p>
+                    </div>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <a href="#overview" class="sidebar-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Обзор</span>
+                    </a>
+                    <a href="#progress" class="sidebar-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Прогресс</span>
+                    </a>
+                    <a href="#achievements" class="sidebar-link">
+                        <i class="fas fa-trophy"></i>
+                        <span>Достижения</span>
+                    </a>
+                    <a href="#certificates" class="sidebar-link">
+                        <i class="fas fa-certificate"></i>
+                        <span>Сертификаты</span>
+                    </a>
+                    <a href="#settings" class="sidebar-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Настройки</span>
+                    </a>
+                    <a href="{{ url_for('logout') }}" class="sidebar-link logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Выход</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Основной контент -->
+            <main class="dashboard-content">
+                <!-- Заголовок -->
+                <div class="dashboard-header">
+                    <h1>Личный кабинет</h1>
+                    <p>Управление вашим обучением и прогрессом</p>
+                </div>
+
+                <!-- Карточки статистики -->
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ user.points }}</h3>
+                            <p>Очки</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ user.completed_labs }}</h3>
+                            <p>Завершено работ</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ user.ctf_rating }}</h3>
+                            <p>Рейтинг CTF</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ user.rank }}</h3>
+                            <p>Ранг</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Прогресс обучения -->
+                <section id="overview" class="dashboard-section active">
+                    <h2><i class="fas fa-chart-line"></i> Обзор прогресса</h2>
+                    <div class="progress-chart">
+                        <!-- Здесь будет график прогресса -->
+                        <p>График прогресса в разработке</p>
+                    </div>
+                    
+                    <div class="recent-activity">
+                        <h3>Последняя активность</h3>
+                        <div class="activity-list">
+                            <!-- Здесь будет список активности -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Настройки -->
+                <section id="settings" class="dashboard-section">
+                    <h2><i class="fas fa-cog"></i> Настройки аккаунта</h2>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="{{ user.email }}" disabled class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="group">Группа</label>
+                            <input type="text" id="group" value="{{ user.group_name }}" disabled class="form-control">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="alert('Функция в разработке')">
+                                <i class="fas fa-key"></i> Сменить пароль
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="alert('Функция в разработке')">
+                                <i class="fas fa-save"></i> Сохранить изменения
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
